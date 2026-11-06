@@ -1,110 +1,196 @@
 :root {
-    --cor-principal: #1E3A8A; 
-    --cor-destaque: #F59E0B; 
-    --cor-fundo: #F4F4F9;     
-    --cor-texto: #333333;     
-    --cor-whatsapp: #25D366;  
+    --cor-principal: #1E3A8A;
+    --cor-destaque: #F59E0B;
+    --cor-fundo: #F4F4F9;
+    --cor-texto: #333333;
+    --cor-whatsapp: #25D366;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* padding e borda entram na largura total */
 }
 
 body {
-    background-color: var(--cor-fundo); /* cor de fundo*/
-    color: var(--cor-texto); /* cor padrão dos texos */
-    font-family: Arial, sans-serif; /* Define uma fonte */
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: Arial, sans-serif;
+    line-height: 1.5; /* texto mais respirável */
 }
 
-header{
-    
-    display: flex;
-    align-items: center; /* Centraliza verticalmente */
-    padding: 20px; /* espaço entre textos e bordas */
-    background-color: var(--cor-principal);
-    border-radius: 8px;
-    color: var(--cor-destaque);
+/* Imagens nunca passam do tamanho do container */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 
+h2 {
+    margin-bottom: 20px; /* o reset tirou o espaço dos títulos, devolvido aqui */
+}
+
+/*  Header  */
+
+header {
+    display: flex;
+    align-items: center; /* centraliza logo e texto na vertical */
+    gap: 20px;
+    padding: 10px 20px;
+    background-color: var(--cor-principal);
+    color: var(--cor-destaque);
 }
 
 header img {
-    width: 60px; /* Controla o tamanho da logo */
+    width: 60px;
     height: 60px;
-    border-radius: 8px; /* Arredonda os cantos se ela for quadrada */
-}
-
-.titulo h1, .titulo h2 {
-    margin: 0; /* Tira o espaço em branco entre o nome da empresa e o subtítulo */
-}
-
-.titulo h1 {
-    font-size: 24px;
-}
-
-.titulo h2 {
-    font-size: 16px; 
-    font-weight: normal; /* Tira o negrito forte do subtítulo */
-}
-
-.cartao-informativo{
-    
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background-color: white;
-    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    max-width: 1000px;
-    img{
-        width: 200px;
-        height: 200px;
-        border-radius: 8px;
-    }
-
 }
 
-.cartao-informativo:nth-child(even) {
-    flex-direction: row-reverse;
+.nome-empresa {
+    font-size: 24px;
+    font-weight: bold;
 }
+
+.subtitulo {
+    font-size: 16px;
+}
+
+/* Herói  */
+
+.heroi {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.heroi__texto h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.heroi__texto p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.heroi__image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Botão de chamada para ação */
+.botao {
+    display: inline-block;
+    background-color: var(--cor-destaque);
+    color: var(--cor-texto);
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+}
+
+.botao:hover {
+    filter: brightness(0.92);
+}
+
+/* Serviços  */
 
 .servicos-conteiner {
     max-width: 1000px;
     margin: 0 auto;
+    padding: 40px 20px;
 }
 
-.formulario-conteiner {
+.lista-servicos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* espaço entre os cartões, sem margin em cada um */
+}
 
-    max-width: 940px;
-    margin: 0 auto;
-    padding: 30px;
+.cartao-informativo {
+    flex: 1; /* os três dividem a largura por igual */
+    display: flex;
+    flex-direction: column; /* imagem em cima, texto embaixo */
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+    overflow: hidden; /* a imagem respeita os cantos arredondados */
 }
 
-.grupo-campo {
-
-    margin-bottom: 15px;
+.cartao-informativo img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* corta a imagem em vez de deformar */
 }
 
-.formulario-conteiner input {
-    
+.texto-servico {
+    padding: 20px;
+}
+
+.texto-servico h3 {
+    margin-bottom: 8px;
+}
+
+/* Formulário mobile uma coluna */
+
+.formulario-conteiner {
+    max-width: 940px;
+    margin: 40px auto;
+    padding: 30px 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-conteiner form {
+    display: grid;
+    grid-template-columns: 1fr; /* uma coluna */
+    gap: 15px;
+}
+
+.grupo-campo label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.formulario-conteiner input,
+.formulario-conteiner textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Garante que o padding e a borda sejam incluídos na largura total */
+    font-family: inherit;
+    font-size: 16px;
+}
 
+.formulario-conteiner textarea {
+    min-height: 120px;
+    resize: vertical;
 }
 
 #botao-enviar {
-    
     background-color: var(--cor-whatsapp);
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-
 }
+
+#botao-enviar:hover {
+    filter: brightness(0.92);
+}
+
+/* FAQ  */
 
 .faq-frequentes {
     max-width: 1000px;
@@ -112,10 +198,67 @@ header img {
     padding: 20px;
 }
 
-footer{
-    
+.faq-frequentes details {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.faq-frequentes summary {
+    padding: 15px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.faq-frequentes details p {
+    padding: 0 20px 15px;
+}
+
+/*  Footer */
+
+footer {
     background-color: var(--cor-principal);
     color: white;
     text-align: center;
-    padding: 40px;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+footer p + p {
+    margin-top: 8px;
+}
+
+/*  ajuste de tela */
+
+@media (min-width: 768px) {
+
+    .heroi {
+        flex-direction: row; /* duas colunas */
+        align-items: center;
+        padding: 60px 20px;
+    }
+
+    .heroi__texto,
+    .heroi__image {
+        flex: 1; /* cada um ocupa metade */
+    }
+
+    .heroi__texto h1 {
+        font-size: 42px;
+    }
+
+    .lista-servicos {
+        flex-direction: row; /* três cartões lado a lado */
+    }
+
+    .formulario-conteiner form {
+        grid-template-columns: 1fr 1fr; /* duas colunas */
+        gap: 15px 20px;
+    }
+
+    /* os dois últimos itens (descrição e botão) ocupam a linha toda */
+    .formulario-conteiner .grupo-campo:nth-last-child(-n+2) {
+        grid-column: 1 / -1;
+    }
 }
