@@ -1,9 +1,9 @@
 :root {
-    --cor-principal: #1E3A8A;
-    --cor-destaque: #F59E0B;
-    --cor-fundo: #F4F4F9;
-    --cor-texto: #333333;
-    --cor-whatsapp: #25D366;
+    --cor-principal: #111111; /* preto do cabeçalho */
+    --cor-destaque: #c62828; /* vermelho dos destaques */
+    --cor-fundo: #111111; /* fundo preto do site */
+    --cor-texto: #ffffff; /* textos em branco */
+    --cor-whatsapp: #c62828; /* botão de enviar vermelho */
 }
 
 
@@ -43,8 +43,8 @@ header {
 }
 
 header img {
-    width: 60px;
-    height: 60px;
+    width: 160px; /* aumentei a logo */
+    height: auto; /* mantém a proporção da logo */
     border-radius: 8px;
 }
 
@@ -117,7 +117,8 @@ header img {
     flex: 1; /* os três dividem a largura por igual */
     display: flex;
     flex-direction: column; /* imagem em cima, texto embaixo */
-    background-color: white;
+    background-color: #222222; /* deixa os cartões escuros */
+    color: white; /* letras brancas nos cartões */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden; /* a imagem respeita os cantos arredondados */
@@ -143,7 +144,7 @@ header img {
     max-width: 940px;
     margin: 40px auto;
     padding: 30px 20px;
-    background-color: white;
+    background-color: #222222; /* fundo escuro do formulário */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -168,6 +169,8 @@ header img {
     border-radius: 4px;
     font-family: inherit;
     font-size: 16px;
+    background-color: white; /* deixa os campos brancos */
+    color: #111111; /* texto escuro dentro dos campos */
 }
 
 .formulario-conteiner textarea {
@@ -199,8 +202,8 @@ header img {
 }
 
 .faq-frequentes details {
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: #222222; /* fundo escuro nas perguntas */
+    border: 1px solid #444444; /* borda mais discreta */
     border-radius: 8px;
     margin-bottom: 10px;
 }
@@ -261,4 +264,115 @@ footer p + p {
     .formulario-conteiner .grupo-campo:nth-last-child(-n+2) {
         grid-column: 1 / -1;
     }
+
+    /* Parte das fotos de iluminação */
+    .secao-iluminacao {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #222222;
+    border-radius: 8px;
+    }
+
+    .secao-iluminacao p {
+    margin-bottom: 15px;
+    }
+
+    /* Organiza as fotos da iluminação */
+    .fotos-iluminacao {
+    display: flex; /* coloca as fotos lado a lado */
+    flex-wrap: wrap; /* se faltar espaço, passam pra outra linha */
+    gap: 15px;
+    }
+
+    /* Tamanho das fotos de iluminação */
+    .fotos-iluminacao img {
+    flex: 1 1 220px; /* divide o espaço entre as fotos */
+    min-width: 0;
+    width: 100%;
+    height: 260px; /* deixa as fotos com a mesma altura */
+    object-fit: cover; /* corta a imagem sem esticar */
+    border-radius: 6px;
+    }
+
+    /* Parte de construções e reformas */
+    .projetos-conteiner {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #222222;
+    border-radius: 8px;
+    }
+
+    /* Foto do projeto elétrico */
+    .projetos-conteiner img {
+    width: 100%;
+    max-width: 500px; /* não deixa a foto muito grande */
+    margin-top: 20px;
+    border-radius: 8px;
+    }
+
+    /* Organização dos três serviços */
+
+    .lista-servicos {
+    display: grid; /* organiza os serviços em colunas */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* faz três colunas iguais */
+    gap: 20px;
+    }
+
+    /* Ajusta os cartões dentro das colunas */
+    .cartao-informativo {
+    width: 100%; /* ocupa a largura da coluna */
+    min-width: 0; /* não deixa ultrapassar a coluna */
+    flex: none;
+    }
+
+    /* Deixa as imagens dos cartões do mesmo tamanho */
+    .cartao-informativo img {
+    width: 100%;
+    height: 190px; /* mesma altura para as três fotos */
+    object-fit: cover; /* corta sem deformar */
+     }
+
+    /* Espaço do texto dentro dos cartões */
+    .texto-servico {
+    padding: 15px;
+    }
+
+    /* Ajuste para telas menores */
+
+    @media (max-width: 760px) {
+    .lista-servicos {
+        grid-template-columns: 1fr; /* usa uma coluna nessa largura de tela */
+    }
+    }
+
+    /* Centraliza a foto de construções e reformas */
+    .projetos-conteiner img {
+    display: block; /* permite centralizar a foto */
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 20px auto 0; /* centraliza a foto e dá espaço em cima */
+    }
+
+    /* Espaço da foto do começo */
+    .heroi__image {
+    width: 100%;
+    max-width: 420px; /* limita o tamanho da foto */
+    height: 520px;
+    overflow: hidden; /* esconde as partes que sobram */
+    border-radius: 12px;
+}
+
+/* Ajuste da imagem que fica no começo */
+.heroi__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* preenche sem distorcer */
+    object-position: center; /* mostra o centro da foto */
+    display: block;
+}
+
+    
 }
