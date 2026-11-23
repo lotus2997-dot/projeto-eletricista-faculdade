@@ -2,10 +2,26 @@
     --cor-principal: #1E3A8A;
     --cor-destaque: #F59E0B;
     --cor-fundo: #F4F4F9;
+    --cor-superficie: #FFFFFF;
     --cor-texto: #333333;
+    --cor-borda: #DDDDDD;
+    --cor-input-fundo: #FFFFFF;
     --cor-whatsapp: #25D366;
+    --cor-erro: #DC2626;
+    --sombra: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+body.dark-mode {
+    --cor-principal: #0F172A;
+    --cor-destaque: #FBBF24;
+    --cor-fundo: #111827;
+    --cor-superficie: #1F2937;
+    --cor-texto: #F3F4F6;
+    --cor-borda: #374151;
+    --cor-input-fundo: #111827;
+    --cor-erro: #F87171;
+    --sombra: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
 
 * {
     margin: 0;
@@ -18,6 +34,7 @@ body {
     color: var(--cor-texto);
     font-family: Arial, sans-serif;
     line-height: 1.5; /* texto mais respirável */
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* Imagens nunca passam do tamanho do container */
@@ -31,20 +48,29 @@ h2 {
     margin-bottom: 20px; /* o reset tirou o espaço dos títulos, devolvido aqui */
 }
 
-/*  Header  */
+/* Header */
 
 header {
     display: flex;
-    align-items: center; /* centraliza logo e texto na vertical */
-    gap: 20px;
-    padding: 10px 20px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 12px 20px;
     background-color: var(--cor-principal);
     color: var(--cor-destaque);
+}
+
+.header-marca {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 header img {
     width: 60px;
     height: 60px;
+    object-fit: cover;
     border-radius: 8px;
 }
 
@@ -54,10 +80,29 @@ header img {
 }
 
 .subtitulo {
-    font-size: 16px;
+    font-size: 15px;
+    color: #E5E7EB;
 }
 
-/* Herói  */
+.botao-tema {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px 14px;
+    min-height: 44px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.botao-tema:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: var(--cor-destaque);
+}
+
+/* Herói */
 
 .heroi {
     display: flex;
@@ -84,11 +129,30 @@ header img {
     border-radius: 8px;
 }
 
+    /* Espaço da foto do começo */
+    .heroi__image {
+    width: 100%;
+    max-width: 420px; /* limita o tamanho da foto */
+    height: 520px;
+    overflow: hidden; /* esconde as partes que sobram */
+    border-radius: 12px;
+}
+
+/* Ajuste da imagem que fica no começo */
+.heroi__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* preenche sem distorcer */
+    object-position: center; /* mostra o centro da foto */
+    display: block;
+}
+
+    
 /* Botão de chamada para ação */
 .botao {
     display: inline-block;
     background-color: var(--cor-destaque);
-    color: var(--cor-texto);
+    color: #1F2937;
     font-weight: bold;
     text-decoration: none;
     padding: 12px 24px;
@@ -99,7 +163,7 @@ header img {
     filter: brightness(0.92);
 }
 
-/* Serviços  */
+/* Serviços */
 
 .servicos-conteiner {
     max-width: 1000px;
@@ -108,19 +172,20 @@ header img {
 }
 
 .lista-servicos {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* espaço entre os cartões, sem margin em cada um */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
 .cartao-informativo {
-    flex: 1; /* os três dividem a largura por igual */
     display: flex;
     flex-direction: column; /* imagem em cima, texto embaixo */
-    background-color: white;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--sombra);
     overflow: hidden; /* a imagem respeita os cantos arredondados */
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .cartao-informativo img {
@@ -137,15 +202,45 @@ header img {
     margin-bottom: 8px;
 }
 
+/* Galeria de Iluminação */
+
+.galeria-conteiner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 20px 40px;
+}
+
+.galeria-subtitulo {
+    margin-top: -12px;
+    margin-bottom: 20px;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.galeria-grid img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+}
+
 /* Formulário mobile uma coluna */
 
 .formulario-conteiner {
     max-width: 940px;
-    margin: 40px auto;
+    margin: 20px auto 40px;
     padding: 30px 20px;
-    background-color: white;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--sombra);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .formulario-conteiner form {
@@ -164,10 +259,18 @@ header img {
 .formulario-conteiner textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    background-color: var(--cor-input-fundo);
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-borda);
     border-radius: 4px;
     font-family: inherit;
     font-size: 16px;
+}
+
+.formulario-conteiner input.campo-invalido,
+.formulario-conteiner textarea.campo-invalido {
+    border-color: var(--cor-erro);
+    outline: 1px solid var(--cor-erro);
 }
 
 .formulario-conteiner textarea {
@@ -175,9 +278,17 @@ header img {
     resize: vertical;
 }
 
+.mensagem-erro {
+    color: var(--cor-erro);
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 20px;
+    margin-bottom: 10px;
+}
+
 #botao-enviar {
     background-color: var(--cor-whatsapp);
-    color: white;
+    color: #0A2E1A;
     padding: 12px 24px;
     border: none;
     border-radius: 4px;
@@ -190,7 +301,7 @@ header img {
     filter: brightness(0.92);
 }
 
-/* FAQ  */
+/* FAQ */
 
 .faq-frequentes {
     max-width: 1000px;
@@ -199,10 +310,11 @@ header img {
 }
 
 .faq-frequentes details {
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
     border-radius: 8px;
     margin-bottom: 10px;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .faq-frequentes summary {
@@ -215,7 +327,7 @@ header img {
     padding: 0 20px 15px;
 }
 
-/*  Footer */
+/* Footer */
 
 footer {
     background-color: var(--cor-principal);
@@ -229,7 +341,7 @@ footer p + p {
     margin-top: 8px;
 }
 
-/*  ajuste de tela */
+/* Ajuste de tela */
 
 @media (min-width: 768px) {
 
@@ -245,11 +357,36 @@ footer p + p {
     }
 
     .heroi__texto h1 {
-        font-size: 42px;
+        font-size: 40px;
     }
 
     .lista-servicos {
-        flex-direction: row; /* três cartões lado a lado */
+        grid-template-columns: repeat(3, 1fr); /* três cartões lado a lado */
+    }
+
+    /* Novo card de reformas ocupando a linha inteira abaixo dos 3 */
+    .cartao-reforma {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .cartao-reforma img {
+        width: 40%;
+        height: auto;
+        min-height: 220px;
+        flex-shrink: 0;
+    }
+
+    .cartao-reforma .texto-servico {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 28px;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .formulario-conteiner form {
@@ -257,8 +394,7 @@ footer p + p {
         gap: 15px 20px;
     }
 
-    /* os dois últimos itens (descrição e botão) ocupam a linha toda */
-    .formulario-conteiner .grupo-campo:nth-last-child(-n+2) {
+    .formulario-conteiner .campo-inteiro {
         grid-column: 1 / -1;
     }
 }

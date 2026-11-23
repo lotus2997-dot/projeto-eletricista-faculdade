@@ -1,33 +1,133 @@
 console.log("JavaScript funcionando!");
 
-const formulario = document.getElementById("formulario-contato"); //pega o formulario pelo id, e coloca numa variavel
+//  DARK MODE 
+const botaoTema = document.getElementById("botao-tema");
+const corpo = document.body;
 
-formulario.addEventListener("submit", function(evento) {  //pega o botão pelo id no formulario, e adiciona um evento
+function atualizarTextoTema(estaEscuro) {
+    botaoTema.textContent = estaEscuro ? "☀️ Modo Claro" : "🌙 Modo Escuro";
+}
+
+// Restaura a preferência salva ao recarregar a página
+if (localStorage.getItem("tema") === "dark") {
+    corpo.classList.add("dark-mode");
+    atualizarTextoTema(true);
+}
+
+botaoTema.addEventListener("click", function () {
+    const estaEscuro = corpo.classList.toggle("dark-mode");
+    localStorage.setItem("tema", estaEscuro ? "dark" : "light");
+    atualizarTextoTema(estaEscuro);
+});
+
+//  MÁSCARA DE TELEFONE 
+const campoTelefone = document.getElementById("telefone");
+
+campoTelefone.addEventListener("input", function (evento) {
+    let valor = evento.target.value.replace(/\D/g, "").slice(0, 11);
+
+    if (valor.length > 6) {
+        valor = valor.length === 11
+            ? valor.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3")
+            : valor.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3");
+    } else if (valor.length > 2) {
+        valor = valor.replace(/^(\d{2})(\d{0,5})$/, "($1) $2");
+    } else if (valor.length > 0) {
+        valor = valor.replace(/^(\d*)$/, "($1");
+    }
+
+    evento.target.value = valor;
+});
+
+//  VALIDAÇÃO COM REGEX E ENVIO WHATSAPP 
+const formulario = document.getElementById("formulario-contato");
+const mensagemErro = document.getElementById("mensagem-erro");
+
+const campoNome = document.getElementById("name");
+const campoBairro = document.getElementById("bairro");
+const campoRua = document.getElementById("rua");
+const campoNumero = document.getElementById("numero");
+const campoDescricao = document.getElementById("descricao");
+
+const campos = [campoNome, campoTelefone, campoBairro, campoRua, campoNumero, campoDescricao];
+
+// Remove o destaque de erro assim que o usuário volta a digitar no campo
+campos.forEach(function (campo) {
+    campo.addEventListener("input", function () {
+        campo.classList.remove("campo-invalido");
+    });
+});
+
+// Expressões Regulares (Regex)
+const regexNome = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]{3,}$/;
+const regexTelefone = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+const regexBairro = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s.'-]{2,}$/;
+const regexRua = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s.,'ºª-]{2,}$/;
+const regexNumero = /^(\d{1,6}[A-Za-z]?|S\/N)$/i;
+const regexDescricao = /^.{10,}$/s;
+
+function exibirErro(campo, texto) {
+    mensagemErro.textContent = texto;
+    campo.classList.add("campo-invalido");
+    campo.focus();
+}
+
+formulario.addEventListener("submit", function (evento) {
     evento.preventDefault();
+    mensagemErro.textContent = "";
+    campos.forEach(function (campo) {
+        campo.classList.remove("campo-invalido");
+    });
 
-    const nome = document.getElementById("name").value; //pega o campo do nome pelo id no formulario, e coloca numa variavel
-    const bairro = document.getElementById("bairro").value;
-    const rua = document.getElementById("rua").value;
-    const numero = document.getElementById("numero").value;
-    const telefone = document.getElementById("telefone").value;
-    const descricao = document.getElementById("descricao").value;
+    const nome = campoNome.value.trim();
+    const telefone = campoTelefone.value.trim();
+    const bairro = campoBairro.value.trim();
+    const rua = campoRua.value.trim();
+    const numero = campoNumero.value.trim();
+    const descricao = campoDescricao.value.trim();
 
-    //cria uma variavel que contem a mensagem que vai ser enviada, colocando os dados dos campos na mensagem
+    if (!regexNome.test(nome)) {
+        exibirErro(campoNome, "Digite um nome válido (apenas letras, mínimo de 3 caracteres).");
+        return;
+    }
+
+    if (!regexTelefone.test(telefone)) {
+        exibirErro(campoTelefone, "Digite um telefone completo com DDD. Ex: (17) 99177-0413.");
+        return;
+    }
+
+    if (!regexBairro.test(bairro)) {
+        exibirErro(campoBairro, "Informe um bairro válido.");
+        return;
+    }
+
+    if (!regexRua.test(rua)) {
+        exibirErro(campoRua, "Informe o nome da rua corretamente.");
+        return;
+    }
+
+    if (!regexNumero.test(numero)) {
+        exibirErro(campoNumero, "Informe um número válido (ex: 4214, 120A ou S/N).");
+        return;
+    }
+
+    if (!regexDescricao.test(descricao)) {
+        exibirErro(campoDescricao, "Descreva o serviço com pelo menos 10 caracteres.");
+        return;
+    }
+
     const mensagem = `Olá! Gostaria de solicitar um serviço elétrico.
 
 Nome: ${nome}
+Telefone: ${telefone}
 Bairro: ${bairro}
 Rua: ${rua}
 Número: ${numero}
-Telefone: ${telefone}
 Descrição: ${descricao}`;
 
-    const mensagemFormatada = encodeURIComponent(mensagem); //deixa a mensagem compativel com um URL e poe numa variavel
-    const numeroEletricista = "5517991770413";
+    const mensagemFormatada = encodeURIComponent(mensagem);
+    const numeroEletricista = "5517992113703";
+    const linkWhatsapp = `https://wa.me/${numeroEletricista}?text=${mensagemFormatada}`;
 
-    const linkWhatsapp = `https://wa.me/${numeroEletricista}?text=${mensagemFormatada}`; //link do wpp
-
-
-window.location.href = linkWhatsapp; //abre o link do whatsapp, com a conversa pronta
-
+    window.location.href = linkWhatsapp;
 });

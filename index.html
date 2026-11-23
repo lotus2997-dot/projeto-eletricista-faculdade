@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcelo Barreto Eletricista | Serviços Elétricos</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-marca">
+            <img src="./imagem/Logo PI..jpeg" alt="Logo Marcelo Barreto Eletricista">
+            <div class="titulo">
+                <p class="nome-empresa">Marcelo Barreto</p>
+                <p class="subtitulo">Eletricista Residencial e Comercial</p>
+            </div>
+        </div>
+
+        <button type="button" id="botao-tema" class="botao-tema" aria-label="Alternar modo escuro">
+            🌙 Modo Escuro
+        </button>
+    </header>
+
+    <main>
+        <section class="heroi">
+            <div class="heroi__texto">
+                <h1>Serviços elétricos com qualidade e segurança</h1>
+                <p>Evite riscos de curto-circuito, quedas de energia e instalações improvisadas na sua casa ou empresa. Atendemos desde pequenos reparos até projetos elétricos completos seguindo as normas técnicas.</p>
+                <a href="#contato" class="botao">Solicitar orçamento</a>
+            </div>
+            <div class="heroi__image">
+                <img src="./imagem/eletricista-inicio.jpeg" alt="Eletricista profissional usando capacete de segurança">
+            </div>
+        </section>
+
+        <section class="servicos-conteiner">
+            <h2>Nossos Serviços</h2>
+            <div class="lista-servicos">
+                <div class="cartao-informativo">
+                    <img src="./imagem/chuveiro.jpg" alt="Instalação de chuveiro elétrico">
+                    <div class="texto-servico">
+                        <h3>Instalação de Chuveiro</h3>
+                        <p>Instalação e substituição de chuveiros e duchas elétricas com dimensionamento correto de fiação, disjuntor exclusivo e conectores seguros.</p>
+                    </div>
+                </div>
+
+                <div class="cartao-informativo">
+                    <img src="./imagem/fiacao.jpeg" alt="Cabos elétricos coloridos para troca de fiação">
+                    <div class="texto-servico">
+                        <h3>Troca de Fiação</h3>
+                        <p>Substituição de fiação antiga, ressecada ou sobrecarregada para eliminar aquecimentos, reduzir desperdício de energia e prevenir curtos-circuitos.</p>
+                    </div>
+                </div>
+
+                <div class="cartao-informativo">
+                    <img src="./imagem/interruptores.jpg" alt="Interruptor duplo e tomada instalados na parede">
+                    <div class="texto-servico">
+                        <h3>Troca de Interruptores</h3>
+                        <p>Instalação e substituição de interruptores simples, paralelos, intermediários e conjuntos com tomadas, garantindo funcionamento confiável e ótimo acabamento.</p>
+                    </div>
+                </div>
+
+                <div class="cartao-informativo cartao-reforma">
+                    <img src="./imagem/projeto-eletrico.jpg" alt="Planta de projeto elétrico residencial com trena e caneta">
+                    <div class="texto-servico">
+                        <h3>Construções e Reformas</h3>
+                        <p>Trabalhamos em obras realizando instalações elétricas completas em construções novas e reformas, desde a passagem de fiação e organização do quadro de distribuição até a instalação de tomadas e iluminação.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="galeria-conteiner">
+            <h2>Projetos de Iluminação</h2>
+            <p class="galeria-subtitulo">Confira alguns resultados de instalações de lustres, pendentes e perfis de LED.</p>
+            <div class="galeria-grid">
+                <img src="./imagem/iluminacao1.jpeg" alt="Instalação de lustre pendente de cristal em pé-direito alto">
+                <img src="./imagem/iluminacao2.jpeg" alt="Iluminação moderna com perfil de LED embutido no gesso e parede">
+                <img src="./imagem/iluminacao3.jpeg" alt="Instalação de lustre redondo dourado com cristais">
+            </div>
+        </section>
+
+        <section class="formulario-conteiner" id="contato">
+            <h2>Solicite um serviço</h2>
+            <form id="formulario-contato" novalidate>
+
+                <div class="grupo-campo">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" placeholder="Ex: Maria Silva" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="telefone">Telefone para contato</label>
+                    <input type="tel" id="telefone" placeholder="Ex: (17) 99177-0413" maxlength="15" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" id="bairro" placeholder="Ex: Zequinha Amêndoa" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="rua">Rua</label>
+                    <input type="text" id="rua" placeholder="Ex: Rua 20" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="numero">Número</label>
+                    <input type="text" id="numero" inputmode="numeric" placeholder="Ex: 4214 ou S/N" required>
+                </div>
+
+                <div class="grupo-campo campo-inteiro">
+                    <label for="descricao">Descrição do serviço</label>
+                    <textarea id="descricao" placeholder="Ex: Troca de 3 interruptores e instalação de chuveiro 220V" required></textarea>
+                </div>
+
+                <div class="grupo-campo campo-inteiro">
+                    <p id="mensagem-erro" class="mensagem-erro" aria-live="polite"></p>
+                    <button type="submit" id="botao-enviar">Enviar pelo WhatsApp</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="faq-frequentes">
+            <h2>Perguntas frequentes</h2>
+            <details>
+                <summary>Como o atendimento é feito?</summary>
+                <p>O primeiro contato e o agendamento são feitos diretamente pelo WhatsApp. Basta preencher o formulário acima com os detalhes do que você precisa para agilizarmos seu atendimento.</p>
+            </details>
+            <details>
+                <summary>A visita técnica para o orçamento tem algum custo?</summary>
+                <p>Para serviços simples, conseguimos passar uma estimativa inicial pelo WhatsApp com fotos ou descrição. Quando há necessidade de visita técnica para diagnóstico ou levantamento de obra, informamos previamente qualquer taxa.</p>
+            </details>
+            <details>
+                <summary>Quais serviços elétricos principais vocês realizam?</summary>
+                <p>Realizamos instalação de chuveiros, troca de fiação, troca de interruptores e tomadas, instalação de lustres e iluminação em LED, montagem de quadros de distribuição e elétrica completa para construções novas e reformas.</p>
+            </details>
+            <details>
+                <summary>Quais são as formas de pagamento aceitas?</summary>
+                <p>Aceitamos Pix, dinheiro e cartões de débito ou crédito. Para obras e reformas maiores, combinamos o pagamento por etapas concluídas.</p>
+            </details>
+            <details>
+                <summary>O serviço possui garantia?</summary>
+                <p>Sim. Todos os serviços executados possuem garantia de mão de obra e seguem as recomendações técnicas de segurança para proteger sua instalação e seus equipamentos.</p>
+            </details>
+        </section>
+    </main>
+
+    <footer>
+        <p>Marcelo Barreto Eletricista — CNPJ: 41.230.385/0001-60</p>
+        <p>Local de atendimento: Barretos - SP e região</p>
+        <p>WhatsApp: (17) 99177-0413</p>
+        <p>© 2026 - Marcelo Barreto Eletricista. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
